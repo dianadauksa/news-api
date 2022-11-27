@@ -8,6 +8,7 @@ body {
     margin: 0;
 }
 p    {color: whitesmoke; font-size: 15px}
+img {border-radius: 40px;}
 .header {
     display: flex;
     align-items: center;
