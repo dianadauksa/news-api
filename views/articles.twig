@@ -104,7 +104,7 @@
                 <li class="each_article">
                     <a class="article_link" href="{{ article.url }}" target="_blank">{{ article.title }}</a>
                     <p>{{ article.description }}</p>
-                    <img src="{{ article.urlToImage }}" alt="image unavailable" width="100%" height=auto>
+                    <img src="{{ article.urlToImage }}" alt="{{ article.description }}" width="100%" height=auto>
                 </li>
                 <br/>
             {% endfor %}

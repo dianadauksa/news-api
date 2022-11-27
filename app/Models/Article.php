@@ -17,7 +17,6 @@ class Article
         $this->urlToImage = $urlToImage;
     }
 
-    //following functions used in the articles.twig file for each news article
     public function getTitle(): string
     {
         return $this->title;
