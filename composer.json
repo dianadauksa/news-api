@@ -1,0 +1,16 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "nikic/fast-route": "^1.3",
+    "vlucas/phpdotenv": "^5.5",
+    "ext-json": "*",
+    "twig/twig": "^3.0",
+    "guzzlehttp/guzzle": "^7.4",
+    "nesbot/carbon": "^2.63",
+    "php-di/php-di": "^6.4"
+  }
+}

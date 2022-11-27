@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>USA Hot News</title>
+    <style>
+        body {
+            background-color: #1c1d25;
+            font-family: Verdana, sans-serif;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+        }
+        p    {color: whitesmoke; font-size: 15px}
+        .header {
+            display: flex;
+            align-items: center;
+            padding:20px 0;
+            justify-content: center;
+        }
+        .header_link {
+            padding: 0 10px;
+            text-decoration: none;
+            color: whitesmoke;
+            text-transform: uppercase;
+            font-size: 25px;
+        }
+        .header_link:hover {
+            color: skyblue;
+        }
+        .article_info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 3% 0 0;
+            margin: 0;
+            text-align: center;
+        }
+        .article_link {
+            padding: 0 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            text-shadow: #62f6f1 1px 0 10px;
+        }
+        .article_link:hover {
+            color: deepskyblue;
+        }
+        .each_article {
+            background-color: rgba(145, 145, 206, 0.22);
+            padding: 20px;
+            margin: 10px;
+            width: 400px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-radius: 50px;
+        }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            width: 100vw;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .top {
+            padding:20px 0;
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            color: whitesmoke;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+        .top:hover {
+            color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+<a id="top"></a>
+<header>
+    <nav class = "header">
+        <a class="header_link" href="/?category=general">General</a>
+        <a class="header_link" href="/?category=business">Business</a>
+        <a class="header_link" href="/?category=sports">Sports</a>
+        <a class="header_link" href="/?category=entertainment">Entertainment</a>
+        <a class="header_link" href="/?category=health">Health</a>
+        <a class="header_link" href="/?category=science">Science</a>
+        <a class="header_link" href="/?category=technology">Technology</a>
+    </nav>
+</header>
+<main>
+    <section class="article_info">
+        <ul>
+            {% for article in articles %}
+                <li class="each_article">
+                    <a class="article_link" href="{{ article.url }}" target="_blank">{{ article.title }}</a>
+                    <p>{{ article.description }}</p>
+                    <img src="{{ article.urlToImage }}" alt="image unavailable" width="100%" height=auto>
+                </li>
+                <br/>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+<a class="top" href="#top">back to top</a>
+</body>
+</html>
