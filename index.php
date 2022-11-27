@@ -38,7 +38,7 @@ switch ($routeInfo[0]) {
 
         [$controller, $method] = $handler;
 
-        $loader = new FilesystemLoader('app/Views');
+        $loader = new FilesystemLoader('Views');
         $twig = new Environment($loader);
 
         $container = new Container();
