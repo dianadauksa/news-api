@@ -18,7 +18,7 @@ class ArticlesCollection
         $this->articles[] = $article;
     }
 
-    public function getAll(): array
+    public function getArticles(): array
     {
         return $this->articles;
     }

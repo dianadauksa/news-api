@@ -43,6 +43,36 @@ img {
     color: skyblue;
 }
 
+.search_bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    justify-content: center;
+}
+
+input[type=text], input[type=submit] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    box-sizing: content-box;
+}
+
+input[type=text]:focus {
+    box-shadow: 0 0 0 0.5rem skyblue;
+}
+
+input[type=submit] {
+    background-color: deepskyblue;
+    color: white;
+    border: none;
+    border-radius: 20px 20px;
+}
+
+input[type=submit]:hover {
+    opacity: 0.8;
+}
+
 .article_info {
     display: flex;
     justify-content: center;

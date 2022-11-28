@@ -6,5 +6,5 @@ use App\Models\ArticlesCollection;
 
 interface ShowNews
 {
-    public function getAll(string $category = "general"): ArticlesCollection;
+    public function getAll(string $category = "coding"): ArticlesCollection;
 }

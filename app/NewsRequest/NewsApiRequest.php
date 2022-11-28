@@ -17,9 +17,9 @@ class NewsApiRequest implements ShowNews
         ]);
     }
 
-    public function getAll(string $category = "general"): ArticlesCollection
+    public function getAll(string $category = "coding"): ArticlesCollection
     {
-        $url = "top-headlines?country=us&category=$category&apiKey={$_ENV["NEWS_API_KEY"]}";
+        $url = "everything?q=$category&apiKey={$_ENV["NEWS_API_KEY"]}";
 
         $apiResponse = json_decode($this->httpClient->get($url)->getBody()->getContents());
 

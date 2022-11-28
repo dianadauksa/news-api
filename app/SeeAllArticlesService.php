@@ -5,7 +5,7 @@ namespace App;
 use App\NewsRequest\ShowNews;
 use App\Models\ArticlesCollection;
 
-class SeeAllArticles
+class SeeAllArticlesService
 {
     private ShowNews $allNews;
 

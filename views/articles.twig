@@ -12,6 +12,7 @@
 <a id="top"></a>
 <header>
     <nav class="header">
+        <a class="header_link" href="/">Home</a>
         <a class="header_link" href="/?category=general">General</a>
         <a class="header_link" href="/?category=business">Business</a>
         <a class="header_link" href="/?category=sports">Sports</a>
@@ -22,6 +23,13 @@
     </nav>
 </header>
 <main>
+    <section class="search_bar">
+        <form action="" method="get">
+            <input type="text" name="category"><br>
+            <input type="submit" value="Search">
+            <br>
+        </form>
+    </section>
     <section class="article_info">
         <ul>
             {% for article in articles %}
