@@ -27,7 +27,7 @@ class NewsApiRequest implements ShowNews
         foreach ($apiResponse->articles as $article) {
             $articles[] = new Article(
                 (string)$article->title,
-                (string)$article->description,
+                (string)$article->publishedAt,
                 (string)$article->url,
                 (string)$article->urlToImage
             );

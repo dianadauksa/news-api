@@ -13,13 +13,13 @@ class View
         $this->properties = $properties;
     }
 
-    public function getProperties(): array
-    {
-        return $this->properties;
-    }
-
     public function getTemplatePath(): string
     {
         return $this->templatePath;
+    }
+
+    public function getProperties(): array
+    {
+        return $this->properties;
     }
 }

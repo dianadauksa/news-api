@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Services;
 
-use App\NewsRequest\ShowNews;
 use App\Models\ArticlesCollection;
+use App\NewsRequest\ShowNews;
 
 class SeeAllArticlesService
 {

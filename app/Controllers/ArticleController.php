@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\SeeAllArticlesService;
+use App\Services\SeeAllArticlesService;
 use App\View;
 
 class ArticleController
