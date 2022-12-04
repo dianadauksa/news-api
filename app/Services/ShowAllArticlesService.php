@@ -1,12 +1,12 @@
 <?php
 
-namespace App\NewsRequest;
+namespace App\Services;
 
+use App\Models\Collections\ArticlesCollection;
 use App\Models\Article;
-use App\Models\ArticlesCollection;
 use GuzzleHttp\Client;
 
-class NewsApiRequest implements ShowNews
+class ShowAllArticlesService
 {
     private Client $httpClient;
 
@@ -17,9 +17,9 @@ class NewsApiRequest implements ShowNews
         ]);
     }
 
-    public function getAll(string $category = "coding"): ArticlesCollection
+    public function execute(string $category): ArticlesCollection
     {
-        $url = "everything?q=$category&apiKey={$_ENV["NEWS_API_KEY"]}";
+        $url = "everything?q=$category&language=en&sortBy=publishedAt&apiKey={$_ENV["NEWS_API_KEY"]}";
 
         $apiResponse = json_decode($this->httpClient->get($url)->getBody()->getContents());
 

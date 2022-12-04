@@ -2,22 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Services\SeeAllArticlesService;
+use App\Services\ShowAllArticlesService;
 use App\View;
 
 class ArticleController
 {
-    private SeeAllArticlesService $allArticles;
-
-    public function __construct(SeeAllArticlesService $allArticles)
-    {
-        $this->allArticles = $allArticles;
-    }
 
     public function index(): View
     {
         $category = $_GET["category"] ?? "coding";
+        $articles = (new ShowAllArticlesService())->execute($category);
 
-        return new View("articles", ["articles" => $this->allArticles->execute($category)->getArticles()]);
+        return new View("articles", ["articles" => $articles->getArticles()]);
     }
 }

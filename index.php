@@ -1,19 +1,27 @@
 <?php
 
-use App\NewsRequest\{ShowNews, NewsApiRequest};
+use App\Redirect;
 use App\View;
-use DI\Container;
 use Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 require_once 'vendor/autoload.php';
+session_start();
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
+$loader = new FilesystemLoader('views');
+$twig = new Environment($loader);
+$twig->addGlobal('session', $_SESSION);
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $route) {
     $route->addRoute('GET', '/', ['App\Controllers\ArticleController', 'index']);
+    $route->addRoute('GET', '/register', ['App\Controllers\RegisterController', 'index']);
+    $route->addRoute('POST', '/register', ['App\Controllers\RegisterController', 'register']);
+    $route->addRoute('GET', '/login', ['App\Controllers\LoginController', 'index']);
+    $route->addRoute('POST', '/login', ['App\Controllers\LoginController', 'login']);
+    $route->addRoute('GET', '/logout', ['App\Controllers\LogoutController', 'logout']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -38,16 +46,14 @@ switch ($routeInfo[0]) {
 
         [$controller, $method] = $handler;
 
-        $loader = new FilesystemLoader('views');
-        $twig = new Environment($loader);
+        $response = (new $controller)->{$method}($vars);
+        if ($response instanceof View) {
+            echo $twig->render($response->getTemplatePath() . '.twig', $response->getProperties());
+        }
 
-        $container = new Container();
-        $container->set(ShowNews::class, DI\create(NewsApiRequest::class));
-
-        /** @var View $view */
-        $view = ($container->get($controller))->$method();
-        $template = $twig->load($view->getTemplatePath() . ".twig");
-        echo $template->render($view->getProperties());
+        if ($response instanceof Redirect) {
+            header('Location: ' . $response->getUrl());
+        }
         break;
 }
 

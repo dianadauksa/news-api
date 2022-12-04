@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<h1 id="register" class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+    Login to your account
+</h1>
+<section class="login">
+    <form action="/login" method="post">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+</section>
+{% endblock %}

@@ -9,9 +9,9 @@ class Article
     private string $title;
     private string $publishedAt;
     private string $url;
-    private string $urlToImage;
+    private ?string $urlToImage;
 
-    public function __construct(string $title, string $publishedAt, string $url, string $urlToImage)
+    public function __construct(string $title, string $publishedAt, string $url, ?string $urlToImage)
     {
         $this->title = $title;
         $this->publishedAt = $publishedAt;

@@ -7,7 +7,7 @@ class View
     private string $templatePath;
     private array $properties;
 
-    public function __construct(string $templatePath, array $properties)
+    public function __construct(string $templatePath, array $properties = [])
     {
         $this->templatePath = $templatePath;
         $this->properties = $properties;

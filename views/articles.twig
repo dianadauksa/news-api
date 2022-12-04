@@ -1,62 +1,33 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <title>Codelex News Portal</title>
-</head>
-<body>
-<a id="top"></a>
-<header>
-    <nav class="header">
-        <a class="header_link" href="/">Home</a>
-        <a class="header_link" href="/?category=general">General</a>
-        <a class="header_link" href="/?category=business">Business</a>
-        <a class="header_link" href="/?category=sports">Sports</a>
-        <a class="header_link" href="/?category=entertainment">Entertainment</a>
-        <a class="header_link" href="/?category=health">Health</a>
-        <a class="header_link" href="/?category=science">Science</a>
-        <a class="header_link" href="/?category=technology">Technology</a>
-    </nav>
-</header>
-<main>
-    <section class="search_bar">
-        <form action="" method="get">
-            <input type="text" name="category">
-            <input type="submit" value="Search">
-        </form>
-    </section>
+{% extends 'layout.twig' %}
+{% block content %}
+<section class="search_bar">
+    <form action="" method="get">
+        <input type="text" name="category">
+        <input type="submit" value="Search">
+    </form>
+</section>
 
-    <section class="bg-white dark:bg-gray-900">
-        <div class="container px-6 py-10 mx-auto">
-            <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Your daily news</h1>
-
-            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-                {% for article in articles %}
-                    <div class="lg:flex">
-                        {% if article.urlToImage %}
-                            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ article.urlToImage }}">
-                        {% else %}
-                            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="../styles/no-image.png">
-                        {% endif %}
-                        <div class="flex flex-col justify-between py-6 lg:mx-6">
-                            <a id="url" target="_blank" href="{{ article.url }}"
-                               class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
-                                {{ article.title }}
-                            </a>
-
-                            <span class="text-sm text-gray-500 dark:text-gray-300">On: {{ article.date }}</span>
-                        </div>
+<section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto">
+        <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Your daily news</h1>
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            {% for article in articles %}
+                <div class="lg:flex">
+                    {% if article.urlToImage %}
+                        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ article.urlToImage }}">
+                    {% else %}
+                        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="../styles/no-image.png">
+                    {% endif %}
+                    <div class="flex flex-col justify-between py-6 lg:mx-6">
+                        <a id="url" target="_blank" href="{{ article.url }}"
+                           class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                            {{ article.title }}
+                        </a>
+                        <span class="text-sm text-gray-500 dark:text-gray-300">On: {{ article.date }}</span>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
-    </section>
-</main>
-<a class="top" href="#top">back to top</a>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}

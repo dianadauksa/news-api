@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <title>Codelex News Portal</title>
+</head>
+<body>
+<a id="top"></a>
+<header>
+    <nav class="header">
+        <a class="header_link" href="/">Home</a>
+        <a class="header_link" href="/?category=general">General</a>
+        <a class="header_link" href="/?category=business">Business</a>
+        <a class="header_link" href="/?category=sports">Sports</a>
+        <a class="header_link" href="/?category=entertainment">Entertainment</a>
+        <a class="header_link" href="/?category=health">Health</a>
+        <a class="header_link" href="/?category=science">Science</a>
+        <a class="header_link" href="/?category=technology">Technology</a>
+        {% if session %}
+            <a class="header_link" id="welcome" href="#top">Welcome, {{ session.name }}</a>
+            <a class="header_link" id="logout" href="/logout">Logout</a>
+        {% else %}
+            <a class="header_link" id="register-click" href="/register">Register</a>
+            <a class="header_link" id="login-click" href="/login">Login</a>
+        {% endif %}
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

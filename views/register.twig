@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<h1 id="register" class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+    Register new account
+</h1>
+<section class="register">
+    <form action="/register" method="post">
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <br>
+        <input type="password" id="password-repeat" name="password-repeat" placeholder="Repeat your password" required>
+        <br>
+        <input type="submit" value="Register">
+        <a class="go-to-login" href="/login">
+            <button type="button">Already have an acoount? Login</button>
+        </a>
+    </form>
+</section>
+{% endblock %}
