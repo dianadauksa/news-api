@@ -21,7 +21,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $rou
     $route->addRoute('POST', '/register', ['App\Controllers\RegisterController', 'register']);
     $route->addRoute('GET', '/login', ['App\Controllers\LoginController', 'index']);
     $route->addRoute('POST', '/login', ['App\Controllers\LoginController', 'login']);
-    $route->addRoute('GET', '/logout', ['App\Controllers\LogoutController', 'logout']);
+    $route->addRoute('GET', '/logout', ['App\Controllers\LoginController', 'logout']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];

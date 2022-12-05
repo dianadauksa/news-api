@@ -31,11 +31,34 @@ class UserRegisterService
 
     public function checkIfRegistered(string $email): ?RegisterServiceRequest
     {
-        $check = $this->connection->executeQuery("SELECT * FROM Users WHERE email= '{$email}'")->fetchAssociative();
+        $check = $this->connection->executeQuery(
+            "SELECT * FROM Users WHERE email= ?", [$email]
+        )->fetchAssociative();
         if (!$check) {
             return null;
-        } else {
-            return new RegisterServiceRequest($check['name'], $check['email'], $check['password']);
         }
+        return new RegisterServiceRequest($check['name'], $check['email'], $check['password']);
+    }
+
+    public function findID(string $email): ?int
+    {
+        $id = $this->connection->executeQuery(
+            "SELECT id FROM Users WHERE email= ?", [$email]
+        )->fetchAssociative()["id"];
+        if (!$id) {
+            return null;
+        }
+        return $id;
+    }
+
+    public function findNameByID($id): ?string
+    {
+        $name = $this->connection->executeQuery(
+            "SELECT name FROM Users WHERE id= ?", [$id]
+        )->fetchAssociative()["name"];
+        if (!$name) {
+            return null;
+        }
+        return $name;
     }
 }
