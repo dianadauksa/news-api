@@ -1,10 +1,12 @@
 <?php
 
 use App\Redirect;
+use App\Services\UserRegisterService;
 use App\View;
 use Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 require_once 'vendor/autoload.php';
 session_start();
@@ -14,6 +16,16 @@ $dotenv->safeLoad();
 $loader = new FilesystemLoader('views');
 $twig = new Environment($loader);
 $twig->addGlobal('session', $_SESSION);
+$twig->addFunction(
+    new TwigFunction('findNameByID', function ($id) {
+        $name = (new UserRegisterService())->getConnection()->executeQuery(
+            "SELECT name FROM Users WHERE id= ?", [$id]
+        )->fetchAssociative()["name"];
+        if (!$name) {
+            return null;
+        }
+        return $name;
+    }));
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $route) {
     $route->addRoute('GET', '/', ['App\Controllers\ArticleController', 'index']);

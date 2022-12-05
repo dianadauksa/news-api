@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Doctrine\DBAL\{DriverManager, Connection, Exception};
+use Doctrine\DBAL\{DriverManager, Connection};
 
 class UserRegisterService
 {
@@ -51,14 +51,8 @@ class UserRegisterService
         return $id;
     }
 
-    public function findNameByID($id): ?string
+    public function getConnection(): Connection
     {
-        $name = $this->connection->executeQuery(
-            "SELECT name FROM Users WHERE id= ?", [$id]
-        )->fetchAssociative()["name"];
-        if (!$name) {
-            return null;
-        }
-        return $name;
+        return $this->connection;
     }
 }

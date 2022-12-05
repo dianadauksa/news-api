@@ -22,13 +22,12 @@ class LoginController
         if (!$user) {
             return new Redirect('/login');
         }
-        //Salīdzina vai eksistē, un sessijās saglabā LIETOTĀJA ID.
-        //Izmantojot šo ID uz pieprasījumu katru reizi pajautā lietotāja datus, no kura izvada uz ekrāna lietotāja vārdu.
+        //Salīdzina vai eksistē, sessijās saglabā LIETOTĀJA ID.
+        //Izmantojot ID uz pieprasījumu katru reizi pajautā lietotāja datus, izvada uz ekrāna lietotāja vārdu.
         if (password_verify(htmlspecialchars($_POST['password']), $user->getPassword())) {
             $_SESSION["id"] = (new UserRegisterService())->findID(
                 filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)
             );
-            $_SESSION['name'] = $user->getName();
             return new Redirect('/');
         }
         return new Redirect('/login');
