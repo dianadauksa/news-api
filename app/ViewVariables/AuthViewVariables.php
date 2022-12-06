@@ -23,7 +23,7 @@ class AuthViewVariables
             ->where('id = ?')
             ->setParameter(0, $_SESSION['auth_id'])
             ->fetchAssociative();
-        //SELECT * FROM Users WHERE id = $_SESSION['auth_id];
+
         return [
             'id' => $user['id'],
             'name' => $user['name'],

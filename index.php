@@ -2,7 +2,7 @@
 
 use App\Redirect;
 use App\View;
-use App\ViewVariables\AuthViewVariables;
+use App\ViewVariables\{AuthViewVariables, ErrorViewVariables};
 use Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -16,26 +16,14 @@ $loader = new FilesystemLoader('views');
 $twig = new Environment($loader);
 
 $authVariables = [
-    AuthViewVariables::class
+    AuthViewVariables::class,
+    ErrorViewVariables::class
 ];
 /** @var AuthViewVariables $variable */
 foreach ($authVariables as $variable) {
     $variable = new $variable;
-    $twig->addGlobal($variable->getName(), $variable->getValue()); //auth.name likt twigā
+    $twig->addGlobal($variable->getName(), $variable->getValue());
 }
-
-/*$twig->addFunction(
-
-    new TwigFunction('findNameByID', function (int $id): ?string {
-        $name = (new RegisterService())->getConnection()->executeQuery(
-            "SELECT name FROM Users WHERE id= ?", [$id]
-        )->fetchAssociative()["name"];
-        if (!$name) {
-            return null;
-        }
-        return $name;
-    }));
-*/
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $route) {
     $route->addRoute('GET', '/', ['App\Controllers\ArticleController', 'index']);
@@ -44,9 +32,9 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $rou
     $route->addRoute('GET', '/login', ['App\Controllers\LoginController', 'index']);
     $route->addRoute('POST', '/login', ['App\Controllers\LoginController', 'login']);
     $route->addRoute('GET', '/logout', ['App\Controllers\LoginController', 'logout']);
-    $route->addRoute('GET', '/userprofile', ['App\Controllers\UserProfile', 'index']);
-    $route->addRoute('POST', '/userprofile', ['App\Controllers\UserProfile', 'updateUserInfo']);
-    $route->addRoute('POST', '/userprofile-pass', ['App\Controllers\UserProfile', 'updateUserPassword']);
+    $route->addRoute('GET', '/userprofile', ['App\Controllers\ProfileController', 'index']);
+    $route->addRoute('POST', '/update-info', ['App\Controllers\ProfileController', 'updateUserInfo']);
+    $route->addRoute('POST', '/change-pass', ['App\Controllers\ProfileController', 'changePassword']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -74,6 +62,7 @@ switch ($routeInfo[0]) {
         $response = (new $controller)->{$method}($vars);
         if ($response instanceof View) {
             echo $twig->render($response->getTemplatePath() . '.twig', $response->getProperties());
+            unset($_SESSION['errors']);
         }
 
         if ($response instanceof Redirect) {
@@ -81,4 +70,5 @@ switch ($routeInfo[0]) {
         }
         break;
 }
+
 

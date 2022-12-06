@@ -9,6 +9,13 @@
         <br>
         <input type="password" id="password" name="password" placeholder="Enter your password" required>
         <br>
+        {% if errors %}
+            {% for error in errors %}
+                <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
+                    X {{ error }}
+                </p>
+            {% endfor %}
+        {% endif %}
         <input type="submit" value="Login">
     </form>
 </section>
