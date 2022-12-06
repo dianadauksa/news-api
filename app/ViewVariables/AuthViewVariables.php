@@ -4,7 +4,7 @@ namespace App\ViewVariables;
 
 use App\Database;
 
-class AuthViewVariables
+class AuthViewVariables implements ViewVariables
 {
     public function getName(): string
     {

@@ -2,7 +2,7 @@
 
 use App\Redirect;
 use App\View;
-use App\ViewVariables\{AuthViewVariables, ErrorViewVariables};
+use App\ViewVariables\{AuthViewVariables, ErrorViewVariables, ViewVariables};
 use Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -19,7 +19,7 @@ $authVariables = [
     AuthViewVariables::class,
     ErrorViewVariables::class
 ];
-/** @var AuthViewVariables $variable */
+/** @var ViewVariables $variable */
 foreach ($authVariables as $variable) {
     $variable = new $variable;
     $twig->addGlobal($variable->getName(), $variable->getValue());

@@ -2,7 +2,7 @@
 
 namespace App\ViewVariables;
 
-interface ViewVariable
+interface ViewVariables
 {
     public function getName(): string;
 
