@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Redirect;
 use App\Services\RegisterServiceRequest;
-use App\Services\UserRegisterService;
+use App\Services\RegisterService;
 use App\View;
 
 class RegisterController
@@ -17,7 +17,8 @@ class RegisterController
 
     public function register(): Redirect
     {
-        $user = (new UserRegisterService())->checkIfRegistered(
+        // TODO: Create validation
+        $user = (new RegisterService())->checkIfRegistered(
             filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)
         );
         if (
@@ -27,12 +28,12 @@ class RegisterController
             return new Redirect('/register');
         }
 
-        $registerService = new UserRegisterService();
+        $registerService = new RegisterService();
         $registerService->execute(
             new RegisterServiceRequest(
-                htmlspecialchars($_POST['name']),
-                filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
-                password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT)
+                $_POST['name'],
+                $_POST['email'], //filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
+                password_hash($_POST['password'], PASSWORD_DEFAULT)
             )
         );
         return new Redirect('/login');

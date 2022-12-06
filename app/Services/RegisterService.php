@@ -2,27 +2,14 @@
 
 namespace App\Services;
 
-use Doctrine\DBAL\{DriverManager, Connection};
+use App\Database;
 
-class UserRegisterService
+class RegisterService
 {
-    private Connection $connection;
-
-    public function __construct()
-    {
-        $connectionParams = [
-            'dbname' => "{$_ENV["DB_NAME"]}",
-            'user' => "{$_ENV["DB_USER"]}",
-            'password' => "{$_ENV["DB_PASS"]}",
-            'host' => "{$_ENV["DB_HOST"]}",
-            'driver' => 'pdo_mysql',
-        ];
-        $this->connection = DriverManager::getConnection($connectionParams);
-    }
-
     public function execute(RegisterServiceRequest $request): void
     {
-        $this->connection->insert('Users', [
+        $connection = Database::getConnection();
+        $connection->insert('Users', [
                 'name' => $request->getName(),
                 'email' => $request->getEmail(),
                 'password' => $request->getPassword()]
@@ -31,7 +18,8 @@ class UserRegisterService
 
     public function checkIfRegistered(string $email): ?RegisterServiceRequest
     {
-        $check = $this->connection->executeQuery(
+        $connection = Database::getConnection();
+        $check = $connection->executeQuery(
             "SELECT * FROM Users WHERE email= ?", [$email]
         )->fetchAssociative();
         if (!$check) {
@@ -42,17 +30,13 @@ class UserRegisterService
 
     public function findID(string $email): ?int
     {
-        $id = $this->connection->executeQuery(
+        $connection = Database::getConnection();
+        $id = $connection->executeQuery(
             "SELECT id FROM Users WHERE email= ?", [$email]
         )->fetchAssociative()["id"];
         if (!$id) {
             return null;
         }
         return $id;
-    }
-
-    public function getConnection(): Connection
-    {
-        return $this->connection;
     }
 }

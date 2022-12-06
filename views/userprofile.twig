@@ -1,0 +1,37 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <h1 id="register" class="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+        Welcome, {{ auth.name }}!
+    </h1>
+    <h2 id="register" class="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
+        Want to update your user data?
+    </h2>
+    <h3 id="register" class="text-center font-semibold text-gray-800 lg:text-2xl dark:text-white">
+        Registered Name: {{ auth.name }}
+        <br>
+        Registered Email: {{ auth.email }}
+    </h3>
+    <section class="register">
+        <form action="/userprofile" method="post">
+            <input type="text" id="name" name="name" placeholder="Update your name">
+            <br>
+            <input type="email" id="email" name="email" placeholder="Update your email">
+            <br>
+            <input type="submit" value="Update user data">
+        </form>
+    </section>
+    <h2 id="register" class="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
+        Want to change your password?
+    </h2>
+    <section class="register">
+        <form action="/userprofile-pass" method="post">
+            <input type="password" id="password" name="old-password" placeholder="Enter your current password" required>
+            <br>
+            <input type="password" id="password" name="new-password" placeholder="Enter your new password" required>
+            <br>
+            <input type="password" id="password-repeat" name="password-confirm" placeholder="Confirm new password" required>
+            <br>
+            <input type="submit" value="Update password">
+        </form>
+    </section>
+{% endblock %}
