@@ -6,17 +6,27 @@
     <h2 id="register" class="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
         Want to update your user data?
     </h2>
-    <h3 id="register" class="text-center font-semibold text-gray-800 lg:text-2xl dark:text-white">
+    <h3 id="register" class="text-center font-normal text-gray-800 lg:text-2xl dark:text-white">
         Registered Name: {{ auth.name }}
         <br>
         Registered Email: {{ auth.email }}
     </h3>
     <section class="register">
-        <form action="/userprofile" method="post">
+        <form action="/update-info" method="post">
             <input type="text" id="name" name="name" placeholder="Update your name">
             <br>
             <input type="email" id="email" name="email" placeholder="Update your email">
             <br>
+            {% if errors.name %}
+                <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
+                    X {{ errors.name }}
+                </p>
+            {% endif %}
+            {% if errors.email %}
+                <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
+                    X {{ errors.email }}
+                </p>
+            {% endif %}
             <input type="submit" value="Update user data">
         </form>
     </section>
@@ -24,13 +34,29 @@
         Want to change your password?
     </h2>
     <section class="register">
-        <form action="/userprofile-pass" method="post">
-            <input type="password" id="password" name="old-password" placeholder="Enter your current password" required>
+        <form action="/change-pass" method="post">
+            <input type="password" id="password" name="old_password" placeholder="Enter your current password" required>
             <br>
-            <input type="password" id="password" name="new-password" placeholder="Enter your new password" required>
+            <input type="password" id="password" name="new_password" placeholder="Enter your new password" required>
             <br>
-            <input type="password" id="password-repeat" name="password-confirm" placeholder="Confirm new password" required>
+            <input type="password" id="password-repeat" name="password_confirm" placeholder="Confirm new password"
+                   required>
             <br>
+            {% if errors.old_password %}
+                <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
+                    X {{ errors.old_password }}
+                </p>
+            {% endif %}
+            {% if errors.new_password %}
+                <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
+                    X {{ errors.new_password }}
+                </p>
+            {% endif %}
+            {% if errors.password_confirm %}
+                <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
+                    X {{ errors.password_confirm }}
+                </p>
+            {% endif %}
             <input type="submit" value="Update password">
         </form>
     </section>

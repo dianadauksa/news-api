@@ -22,7 +22,7 @@ class LoginController
             ->where('email = ?')
             ->setParameter(0, $_POST['email'])
             ->fetchAssociative();
-        // TODO: Move validation into an object (Errors collection), pass the collection to ErrorViewVariables
+
         if (!$userData) {
             $_SESSION['errors']['email'] = 'Email address not registered, try to register first';
         }

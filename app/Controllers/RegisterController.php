@@ -25,7 +25,6 @@ class RegisterController
             ->setParameter(0, $_POST['email'])
             ->fetchOne(); //returns id => user with such email (user row) exists in database already and has unique id
 
-        // TODO: Move validation into an object (Errors collection), pass the collection to ErrorViewVariables
         if (strlen($_POST['name']) < 3) {
             $_SESSION['errors']['name'] = 'Name must be at least 3 characters long';
         }
