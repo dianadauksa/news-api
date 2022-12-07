@@ -2,9 +2,8 @@
 
 namespace App\Controllers;
 
-use App\{Database, Redirect};
+use App\{Database, Redirect, View};
 use App\Services\UpdateUserService;
-use App\View;
 
 class ProfileController
 {
