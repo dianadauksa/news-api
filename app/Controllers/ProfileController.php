@@ -37,11 +37,11 @@ class ProfileController
         if (!password_verify($_POST['old_password'], $userData['password'])) {
             $_SESSION['errors']['old_password'] = 'Current password incorrect';
         }
-        if (strlen($_POST['new_password']) < 6) {
-            $_SESSION['errors']['new_password'] = 'Password must be at least 6 characters long';
+        if (strlen($_POST['password']) < 6) {
+            $_SESSION['errors']['password'] = 'Password must be at least 6 characters long';
         }
-        if ($_POST['new_password'] !== $_POST['password_confirm']) {
-            $_SESSION['errors']['password_confirm'] = 'Passwords do not match';
+        if ($_POST['password'] !== $_POST['password_repeat']) {
+            $_SESSION['errors']['password_repeat'] = 'Passwords do not match';
         }
         if (!empty ($_SESSION['errors'])) {
             return new Redirect('/userprofile');

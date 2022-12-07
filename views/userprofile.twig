@@ -47,9 +47,9 @@
         <form action="/change-pass" method="post">
             <input type="password" id="password" name="old_password" placeholder="Enter your current password" required>
             <br>
-            <input type="password" id="password" name="new_password" placeholder="Enter your new password" required>
+            <input type="password" id="password" name="password" placeholder="Enter your new password" required>
             <br>
-            <input type="password" id="password-repeat" name="password_confirm" placeholder="Confirm new password"
+            <input type="password" id="password-repeat" name="password_repeat" placeholder="Confirm new password"
                    required>
             <br>
             {% if errors.old_password %}
@@ -57,14 +57,14 @@
                     X {{ errors.old_password }}
                 </p>
             {% endif %}
-            {% if errors.new_password %}
+            {% if errors.password %}
                 <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
-                    X {{ errors.new_password }}
+                    X {{ errors.password }}
                 </p>
             {% endif %}
-            {% if errors.password_confirm %}
+            {% if errors.password_repeat %}
                 <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
-                    X {{ errors.password_confirm }}
+                    X {{ errors.password_repeat }}
                 </p>
             {% endif %}
             {% if success.password %}
