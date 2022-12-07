@@ -16,7 +16,7 @@ class LoginController
         $validation = new Validation();
         $validation->loginValidate($_POST);
 
-        if (!empty ($_SESSION['errors'])) {
+        if ($validation->validationFailed()) {
             return new Redirect('/login');
         }
 
