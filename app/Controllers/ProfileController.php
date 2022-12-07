@@ -51,6 +51,7 @@ class ProfileController
         $id = $_SESSION["auth_id"];
         $updateUserService = new UpdateUserService();
         $updateUserService->execute('password', $newValue, $id);
+        $_SESSION['success']['password'] = 'Your password was successfully changed';
         return new Redirect('/userprofile');
     }
 
@@ -67,6 +68,7 @@ class ProfileController
         $id = $_SESSION["auth_id"];
         $updateUserService = new UpdateUserService();
         $updateUserService->execute('name', $newValue, $id);
+        $_SESSION['success']['name'] = 'Your name was successfully updated';
         return new Redirect('/userprofile');
     }
 
@@ -97,6 +99,7 @@ class ProfileController
         $id = $_SESSION["auth_id"];
         $updateUserService = new UpdateUserService();
         $updateUserService->execute('email', $newValue, $id);
+        $_SESSION['success']['email'] = 'Your email was successfully updated';
         return new Redirect('/userprofile');
     }
 }

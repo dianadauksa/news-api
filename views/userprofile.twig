@@ -27,6 +27,16 @@
                     X {{ errors.email }}
                 </p>
             {% endif %}
+            {% if success.name %}
+                <p class="font-semibold text-green-800 capitalize lg:text-1xl dark:text-green ml-3">
+                    ✔ {{ success.name }}
+                </p>
+            {% endif %}
+            {% if success.email %}
+                <p class="font-semibold text-green-800 capitalize lg:text-1xl dark:text-green ml-3">
+                    ✔ {{ success.email }}
+                </p>
+            {% endif %}
             <input type="submit" value="Update user data">
         </form>
     </section>
@@ -55,6 +65,11 @@
             {% if errors.password_confirm %}
                 <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">
                     X {{ errors.password_confirm }}
+                </p>
+            {% endif %}
+            {% if success.password %}
+                <p class="font-semibold text-green-800 capitalize lg:text-1xl dark:text-green ml-3">
+                    ✔ {{ success.password }}
                 </p>
             {% endif %}
             <input type="submit" value="Update password">

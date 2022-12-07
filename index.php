@@ -2,7 +2,7 @@
 
 use App\Redirect;
 use App\View;
-use App\ViewVariables\{AuthViewVariables, ErrorViewVariables, ViewVariables};
+use App\ViewVariables\{AuthViewVariables, ErrorViewVariables, UpdateProfileVariables, ViewVariables};
 use Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -17,7 +17,8 @@ $twig = new Environment($loader);
 
 $authVariables = [
     AuthViewVariables::class,
-    ErrorViewVariables::class
+    ErrorViewVariables::class,
+    UpdateProfileVariables::class
 ];
 /** @var ViewVariables $variable */
 foreach ($authVariables as $variable) {
@@ -63,6 +64,7 @@ switch ($routeInfo[0]) {
         if ($response instanceof View) {
             echo $twig->render($response->getTemplatePath() . '.twig', $response->getProperties());
             unset($_SESSION['errors']);
+            unset($_SESSION['success']);
         }
 
         if ($response instanceof Redirect) {
