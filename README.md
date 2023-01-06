@@ -9,7 +9,7 @@
 #### To setup and use the News Website, follow these steps:
 
 ###### PREREQUISITES: Make sure that PHP (v7.4) and MySQL (v8.0) and Composer (v2.4) are installed on the system.
-1. Clone this repository using the following command: `git clone https://github.com/dianadauksa/stock-market`
+1. Clone this repository using the following command: `git clone https://github.com/dianadauksa/news-api`
 2. Install the required packages and dependencies: `composer install`
 3. Rename the `.env.example` file to `.env`
 4. Register on [News API](https://newsapi.org/) website and generate an API key (for free)
