@@ -6,16 +6,11 @@
     <h2 id="register" class="text-3xl text-center font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
         Want to update your user data?
     </h2>
-    <h3 id="register" class="text-center font-normal text-gray-800 lg:text-2xl dark:text-white">
-        Registered Name: {{ auth.name }}
-        <br>
-        Registered Email: {{ auth.email }}
-    </h3>
     <section class="register">
         <form action="/update-info" method="post">
-            <input type="text" id="name" name="name" placeholder="Update your name">
+            <input type="text" id="name" name="name" value="{{ auth.name }}" placeholder="Update your name">
             <br>
-            <input type="email" id="email" name="email" placeholder="Update your email">
+            <input type="email" id="email" name="email" value="{{ auth.email }}" placeholder="Update your email">
             <br>
             {% if errors.name %}
                 <p class="font-semibold text-red-800 capitalize lg:text-1xl dark:text-red ml-3">

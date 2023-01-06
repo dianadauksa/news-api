@@ -46,7 +46,7 @@ class ProfileController
             return new Redirect('/userprofile');
         }
 
-        $newValue = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+        $newValue = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $id = $_SESSION["auth_id"];
         $updateUserService = new UpdateUserService();
         $updateUserService->execute('password', $newValue, $id);
